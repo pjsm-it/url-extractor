@@ -23,11 +23,12 @@ A Python CLI tool that extracts and validates URLs from clipboard text or a file
 
 - Python 3.x
 - [pyperclip](https://pypi.org/project/pyperclip/)
+- [pytest](https://pypi.org/project/pytest/) (for running tests)
 
 Install dependencies:
 
 ```bash
-pip install pyperclip
+pip install pyperclip pytest
 ```
 
 ---
@@ -36,7 +37,7 @@ pip install pyperclip
 
 ```bash
 git clone https://github.com/nomore451/url-extractor.git
-cd url-extractor
+cd url-director
 chmod +x url_extractor.py
 ```
 
@@ -54,6 +55,7 @@ Copy text containing URLs to your clipboard, then run:
 Results are copied back to your clipboard, ready to paste.
 
 ### File mode
+
 ```bash
 # Print results to terminal
 ./url_extractor.py urls.txt
