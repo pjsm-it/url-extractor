@@ -31,12 +31,10 @@ URL_PATTERN = re.compile(r'''(
 # ---------------------------------------------------------------------------
 
 def get_input(args):
-    """
-    Get text from clipboard or file depending on arguments.
-    - If a file path is provided in args, read and return its contents.
-    - Otherwise, return the current clipboard contents using pyperclip.
-    """
-    pass
+    if args.file:
+        with open(args.file, 'r') as f:
+            return f.read()
+    return pyperclip.paste()
 
 
 def extract_urls(text):
@@ -81,26 +79,30 @@ def format_output(http_urls, https_urls):
 
 
 def deliver_output(output, source):
-    """
-    Deliver the output depending on the input source.
-    - If source is clipboard, copy output to clipboard using pyperclip.
-    - If source is file, print output to terminal (stdout).
-    """
-    pass
+    if source == 'clipboard':
+        pyperclip.copy(output)
+    else:
+        print(output)
 
 
 def main():
-    """
-    Main function — orchestrates the full flow.
-    1. Parse arguments with argparse.
-    2. Call get_input() to retrieve text.
-    3. Call extract_urls() on the text.
-    4. Call remove_duplicates() on the matches.
-    5. Call sort_and_split() on the unique URLs.
-    6. Call format_output() with the two groups.
-    7. Call deliver_output() with the result.
-    """
-    pass
+    parser = argparse.ArgumentParser(
+        description='Extract and validate URLs from clipboard or file'
+    )
+    parser.add_argument(
+        'file',
+        nargs='?',
+        help='Path to a text file containing URLs'
+    )
+    args = parser.parse_args()
+
+    text = get_input(args)
+    source = 'file' if args.file else 'clipboard'
+    urls = extract_urls(text)
+    unique_urls = remove_duplicates(urls)
+    http_urls, https_urls = sort_and_split(unique_urls)
+    output = format_output(http_urls, https_urls)
+    deliver_output(output, source)
 
 
 # ---------------------------------------------------------------------------
