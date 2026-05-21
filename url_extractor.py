@@ -40,12 +40,7 @@ def get_input(args):
 
 
 def extract_urls(text):
-    """
-    Apply the URL regex to the input text.
-    - Use re.findall() with the URL pattern constant.
-    - Return a list of matched URLs.
-    """
-    pass
+    return URL_PATTERN.findall(text)
 
 
 def remove_duplicates(urls):
@@ -59,23 +54,30 @@ def remove_duplicates(urls):
 
 
 def sort_and_split(urls):
-    """
-    Separate URLs into HTTP and HTTPS groups and sort each alphabetically.
-    - Split by checking if each URL starts with 'https://' or 'http://'.
-    - Sort each group alphabetically.
-    - Return two lists: http_urls, https_urls.
-    """
-    pass
+    http_urls = []
+    https_urls = []
+    for url in urls:
+        if url.startswith('https://'):
+            https_urls.append(url)
+        elif url.startswith('http://'):
+            http_urls.append(url)
+    http_urls.sort() 
+    https_urls.sort()
+    return http_urls, https_urls
 
 
 def format_output(http_urls, https_urls):
-    """
-    Format the final output string.
-    - Add a header for each group (HTTP / HTTPS).
-    - Separate groups with a divider line.
-    - Return the formatted string.
-    """
-    pass
+    lines = []
+    lines.append('HTTP')
+    lines.append('-' * 30)
+    for url in http_urls:
+        lines.append(url)
+    lines.append('')
+    lines.append('HTTPS')
+    lines.append('-' * 30)
+    for url in https_urls:
+        lines.append(url)
+    return '\n'.join(lines)
 
 
 def deliver_output(output, source):
