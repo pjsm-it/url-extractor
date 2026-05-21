@@ -1,0 +1,22 @@
+Welcome to our weekly tech digest! Here are some resources we recommend:
+
+Official documentation can be found at https://docs.python.org/3 and https://developer.mozilla.org/en-US.
+For security research, visit http://www.exploit-db.com and https://www.cve.org.
+Our GitHub repository is at https://github.com/nomore451/url-extractor.
+
+Some community links worth checking:
+http://www.reddit.com/r/netsec and https://stackoverflow.com/questions are great places to start.
+Also check https://portswigger.net/web-security for AppSec learning.
+
+The following links are broken or malformed and should be ignored:
+htp://broken-link.com
+htps://another-broken.com
+www.nodomain.com
+nodomain.pt
+://missingprotocol.com
+http//missingcolon.com
+https:/missingslash.com
+http://
+https://
+
+Visit us at https://www.innotech.pt/about and http://www.example.co.uk/blog/post-1 for more.
